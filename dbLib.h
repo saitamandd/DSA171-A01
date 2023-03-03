@@ -12,10 +12,12 @@
 #ifndef A01_DBLIB_H
 #define A01_DBLIB_H
 
+#include <string>
 #include <string.h>
 #include <time.h>
 #include <iostream>
 #include <iomanip>
+#include <functional>
 
 #include "listLib.h"
 #include "eventLib.h"
@@ -69,7 +71,11 @@ inline bool operator!=(NinjaInfo_t& lhs, NinjaInfo_t& rhs) {
     return !(lhs == rhs);
 }
 
-bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList);
+bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData);
 void process(L1List<ninjaEvent_t>& eventList, L1List<NinjaInfo_t>& nList);
+
+/// NOTE: student may create this function to allocate some global data
+bool initNinjaGlobalData(void** pGData);
+void releaseNinjaGlobalData(void* pGData);
 
 #endif //A01_DBLIB_H
